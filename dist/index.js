@@ -103,6 +103,7 @@ module.exports = React.createClass({
           elements: this.props.tabs.map(function (item) {
             return item.displayName;
           }),
+          containerStyle: this.props.containerStyle,
           fixOffset: this.props.fixOffset,
           handleTabChange: this.handleTabChange,
           lineStyle: this.props.lineStyle,

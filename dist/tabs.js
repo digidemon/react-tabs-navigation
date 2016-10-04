@@ -26,6 +26,9 @@ var defaultStyles = {
     backgroundColor: 'rgba(255, 255, 255, 0.96)',
     fontSize: 18
   },
+  containerStyle:{
+    width:"100%"
+  },
   tabsStyle: {
     height: '100%',
     paddingTop: 15,
@@ -57,6 +60,7 @@ module.exports = Radium(React.createClass({
     selectedTabStyle: React.PropTypes.object,
     tabsBarClassName: React.PropTypes.string,
     tabsBarStyle: React.PropTypes.object,
+    containerStyle: React.PropTypes.object,
     tabsClassName: React.PropTypes.string,
     tabsContainer: React.PropTypes.any,
     tabsStyle: React.PropTypes.object,
@@ -107,6 +111,7 @@ module.exports = Radium(React.createClass({
   // or if no height and paddingTop are defined
   styles: function styles() {
     var styles = {
+      containerStyle: this.props.containerStyle || {},
       lineStyle: this.props.lineStyle || {},
       selectedTabStyle: this.props.selectedTabStyle || defaultStyles.selectedTabStyle,
       tabsStyle: this.props.tabsStyle || {},
@@ -201,7 +206,8 @@ module.exports = Radium(React.createClass({
 
     return React.createElement(
       'div',
-      { ref: 'bar' },
+      { ref: 'bar',
+        style: styles.containerStyle },
       React.createElement(
         'div',
         null,
