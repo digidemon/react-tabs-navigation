@@ -15,7 +15,10 @@ var defaultStyles = {
     backgroundColor: defaultColor,
     height: 3,
     display: 'block',
-    transition: 'margin-left 0.25s cubic-bezier(0.15, 0.48, 0.42, 1.13)'
+    position:'absolute',
+    zIndex: 10,
+    transition: 'margin-left 0.25s cubic-bezier(0.15, 0.48, 0.42, 1.13)',
+    bottom:0
   },
   selectedTabStyle: {
     backgroundColor: Color(defaultColor).lighten(0.4).whiten(3.5).alpha(0.1).rgbaString(),
@@ -163,6 +166,7 @@ module.exports = Radium(React.createClass({
     };
 
     var styleMenu = {
+      position:'relative',
       top: this.state.menuFixed ? this.props.fixOffset : null,
       width: this.state.menuFixed ? this.props.widthB : null,
       position: this.state.menuFixed ? 'fixed' : null,
@@ -215,7 +219,7 @@ module.exports = Radium(React.createClass({
       ),
       React.createElement(
         'div',
-        { style: styleMenu },
+        { style: [styleMenu, {position: 'relative'}] },
         React.createElement(
           'nav',
           {
