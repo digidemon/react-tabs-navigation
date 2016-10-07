@@ -150,7 +150,7 @@ module.exports = Radium(React.createClass({
 
   render: function render() {
     var _this = this;
-    var containerWidth = (this.props.elements.length * 10) + '%'
+    var containerWidth = (this.props.elements.length * 15) + '%'
     var styles = this.styles(); // Gets the user styles for this element
     styles.containerStyle.width = containerWidth
     var filler = this.state.menuFixed ? React.createElement('div', {
