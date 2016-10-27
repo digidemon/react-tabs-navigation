@@ -7,7 +7,7 @@ var React = require('react');
 var ReactDom = require('react-dom');
 
 var tabKeyMixin = require('./tabsKeyboardNavigationMixin.js');
-
+var TAB_MAX_WIDTH = 140;
 var defaultColor = 'rgb(11, 104, 159)';
 var defaultStyles = {
   color: defaultColor,
@@ -44,6 +44,7 @@ var defaultStyles = {
     MozUserSelect: 'none',
     msUserSelect: 'none',
     userSelect: 'none',
+    maxWidth:TAB_MAX_WIDTH + "px",
     boxSizing: 'border-box',
     ':focus': {
       boxShadow: 'inset 0 0 8px rgba(11, 104, 159, 0.3)'
@@ -150,7 +151,7 @@ module.exports = Radium(React.createClass({
 
   render: function render() {
     var _this = this;
-    var containerWidth = (this.props.elements.length * 15) + '%'
+    var containerWidth =  "100%" //(this.props.elements.length * 15) + '%'
     var styles = this.styles(); // Gets the user styles for this element
     styles.containerStyle.width = containerWidth
     var filler = this.state.menuFixed ? React.createElement('div', {
@@ -160,9 +161,22 @@ module.exports = Radium(React.createClass({
     }) : null;
 
     var elementWidth = 1 / this.props.elements.length * 100; // in percentage
+    if (typeof window !== 'undefined') {
+      var w = window,
+        d = document,
+        documentElement = d.documentElement,
+        body = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+    }
+    var maxWidth = TAB_MAX_WIDTH;
+    
+    if(this.props.elements.length * maxWidth > (width - this.props.leftRightWindowPadding) ){
+      maxWidth = (width - this.props.leftRightWindowPadding)/this.props.elements.length
+    }
 
     var bar = {
-      marginLeft: elementWidth * this.props.selected + '%',
+      marginLeft: maxWidth * this.props.selected + 'px',
+      maxWidth: maxWidth + "px",
       width: elementWidth + '%'
     };
 
@@ -212,6 +226,7 @@ module.exports = Radium(React.createClass({
     return React.createElement(
       'div',
       { ref: 'bar',
+        id:'tabs-container',
         style: styles.containerStyle },
       React.createElement(
         'div',

@@ -16,6 +16,7 @@ module.exports = React.createClass({
       React.PropTypes.func, React.PropTypes.node])
     }),
     color: React.PropTypes.string,
+    leftRightWindowPadding: React.PropTypes.number,
     fixOffset: React.PropTypes.number,
     lineStyle: React.PropTypes.object,
     onTabChange: React.PropTypes.func,
@@ -105,6 +106,7 @@ module.exports = React.createClass({
           }),
           containerStyle: this.props.containerStyle,
           fixOffset: this.props.fixOffset,
+          leftRightWindowPadding: this.props.leftRightWindowPadding,
           handleTabChange: this.handleTabChange,
           lineStyle: this.props.lineStyle,
           selected: this.state.selectedTab,
