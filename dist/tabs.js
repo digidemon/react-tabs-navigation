@@ -154,6 +154,10 @@ module.exports = Radium(React.createClass({
     var containerWidth =  "100%" //(this.props.elements.length * 15) + '%'
     var styles = this.styles(); // Gets the user styles for this element
     styles.containerStyle.width = containerWidth
+    if(this.props.tabsInCenter){
+      styles.containerStyle.width = this.props.elements.length * TAB_MAX_WIDTH + "px"
+      styles.containerStyle.margin = "0 auto"
+    }
     var filler = this.state.menuFixed ? React.createElement('div', {
       style: {
         height: (styles.tabsBarStyle.height || defaultStyles.tabsBarStyle.height || 0) + (styles.tabsBarStyle.paddingTop || defaultStyles.tabsBarStyle.paddingTop || 0) + (styles.tabsBarStyle.marginTop || defaultStyles.tabsBarStyle.marginTop || 0)

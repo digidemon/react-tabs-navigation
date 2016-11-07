@@ -105,6 +105,7 @@ module.exports = React.createClass({
             return item.displayName;
           }),
           containerStyle: this.props.containerStyle,
+          tabsInCenter:this.props.tabsInCenter,
           fixOffset: this.props.fixOffset,
           leftRightWindowPadding: this.props.leftRightWindowPadding,
           handleTabChange: this.handleTabChange,
